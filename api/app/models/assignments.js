@@ -1,18 +1,14 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize')
 const { USER_TABLE } = require('./users');
 const { TASK_TABLE } = require('./tasks');
 
-const COMMENT_TABLE = 'comments';
-const CommentSchema = {
-    id: {
+const ASSIGNMENT_TABLE = 'assignments';
+const AssignmentSchema = {
+    id:{
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-    },
-    message: {
-        type: DataTypes.TEXT,
-        allowNull: true,
+        primaryKey: true
     },
     userId: {
         type: DataTypes.INTEGER,
@@ -38,18 +34,17 @@ const CommentSchema = {
     }
 }
 
-class Comment extends Model {
-    static associate(models) {
-        this.belongsTo(models.User, { as: 'user'});
-        this.belongsTo(models.Task, { as: 'task'});
+class Assignment extends Model {
+    static associate(){
+
     }
     static config(sequelize){
         return {
             sequelize,
-            tableName: COMMENT_TABLE,
-            modelName: 'Comment'
+            tableName: ASSIGNMENT_TABLE,
+            modelName: 'Assignment'
         }
     }
 }
 
-module.exports = { Comment, CommentSchema, COMMENT_TABLE };
+module.exports = { Assignment, ASSIGNMENT_TABLE, AssignmentSchema };

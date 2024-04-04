@@ -22,23 +22,11 @@ const CustomerSchema = {
         type: DataTypes.STRING,
         allowNull: true,
         unique: true
-    },
-    userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'user_id',
-        references: {
-            model: USER_TABLE,
-            key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
     }
 }
 
 class Customer extends Model{
     static associate(models){
-        this.belongsTo(models.User, { as: 'user' });
         this.hasMany(models.Project, { as: 'projects', foreignKey: 'customerId' });
     }
     static config(sequelize){
