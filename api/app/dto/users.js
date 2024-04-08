@@ -37,7 +37,6 @@ const updateUserDTO = Joi.object({
     name,
     email,
     rol,
-    password: password.when('rol', {is: Joi.exist(), then: Joi.required()})
 })
 
 const updatePasswordDTO = Joi.object({
@@ -49,3 +48,5 @@ const updatePasswordDTO = Joi.object({
 const getUserDTO = Joi.object({
     id: id.required(),
 })
+
+module.exports = {createUserDTO, updateUserDTO, updatePasswordDTO, getUserDTO};
