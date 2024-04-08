@@ -23,7 +23,7 @@ const repeat_password = Joi.string().valid(Joi.ref('password')).messages({
     "any.ref": "The password confirmation must match the password.",
     "any.required": "The password confirmation is required."
 });
-const rol = Joi.string();
+const rol = Joi.string().valid("admin", "employee");
 
 const createUserDTO = Joi.object({
     name: name.required(),
