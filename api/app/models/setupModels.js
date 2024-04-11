@@ -3,7 +3,7 @@ const { Customer, CustomerSchema } = require('./customers');
 const { Project, ProjectSchema } = require('./projects');
 const { Task, TaskSchema } = require('./tasks');
 const { Assignment, AssignmentSchema } = require('./assignments');
-const { CommentSchema } = require('./comments');
+const { Comment, CommentSchema } = require('./comments');
 
 function setupModels(sequelize){
     User.init(UserSchema, User.config(sequelize));

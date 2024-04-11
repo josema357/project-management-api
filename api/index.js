@@ -2,6 +2,10 @@ const express = require("express");
 const routesApi = require("./routes.api");
 const sequelize = require("./libs/connection");
 require("dotenv").config();
+const {logErrors} = require("./middlewares/logErrorHandler");
+const {ormErrorHandler} = require("./middlewares/sequelizeErrorHandler");
+const {boomErrorHandler} = require("./middlewares/boomErrorHandler");
+const {errorHanlder} = require("./middlewares/othersErrorHandler");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,5 +24,11 @@ app.get("/", async (req, res) => {
 });
 
 routesApi(app);
+
+//Middlewares
+app.use(logErrors);
+app.use(ormErrorHandler);
+app.use(boomErrorHandler);
+app.use(errorHanlder);
 
 app.listen(port);
