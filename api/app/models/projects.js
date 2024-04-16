@@ -44,6 +44,17 @@ const ProjectSchema = {
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+    field: "created_at",
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+    field: "updated_at",
+},
 };
 
 class Project extends Model {

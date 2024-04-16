@@ -18,11 +18,14 @@ module.exports = {
     await queryInterface.createTable(COMMENT_TABLE, CommentSchema);
   },
   async down (queryInterface) {
+    await queryInterface.dropTable(COMMENT_TABLE);
+    await queryInterface.dropTable(ASSIGNMENT_TABLE);
+    await queryInterface.dropTable(TASK_TABLE);
+    await queryInterface.dropTable(PROJECT_TABLE);
     await queryInterface.dropTable(USER_TABLE);
     await queryInterface.dropTable(CUSTOMER_TABLE);
-    await queryInterface.dropTable(PROJECT_TABLE);
-    await queryInterface.dropTable(TASK_TABLE);
-    await queryInterface.dropTable(ASSIGNMENT_TABLE);
-    await queryInterface.dropTable(COMMENT_TABLE);
+    
+    
+    
   }
 };

@@ -1,5 +1,6 @@
 const boom = require("@hapi/boom");
 const { models } = require("../../libs/connection");
+const { DataTypes } = require("sequelize");
 
 class UserService {
   /**

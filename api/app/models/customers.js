@@ -22,7 +22,18 @@ const CustomerSchema = {
         type: DataTypes.STRING,
         allowNull: true,
         unique: true
-    }
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+        field: "created_at",
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+        field: "updated_at",
+    },
 }
 
 class Customer extends Model{

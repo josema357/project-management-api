@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
 
 const USER_TABLE = "users";
 const UserSchema = {
@@ -25,6 +26,23 @@ const UserSchema = {
   rol: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    get() {
+      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+    },
+    field: "created_at",
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    get() {
+      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+    },
+    field: "updated_at",
   },
 };
 
