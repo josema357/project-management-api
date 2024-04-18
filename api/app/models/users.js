@@ -40,9 +40,17 @@ const UserSchema = {
     type: DataTypes.DATE,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     get() {
-      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+      return moment(this.getDataValue('updateAt')).format('YYYY-MM-DD HH:mm:ss');
     },
     field: "updated_at",
+  },
+  deleteAt: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    get() {
+      return moment(this.getDataValue('deleteAt')).format('YYYY-MM-DD HH:mm:ss');
+    },
+    field: "delete_at",
   },
 };
 
