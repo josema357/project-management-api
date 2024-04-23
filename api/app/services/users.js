@@ -1,5 +1,6 @@
 const boom = require("@hapi/boom");
 const { models } = require("../../libs/connection");
+const { Op } = require("sequelize");
 
 class UserService {
   /**
@@ -20,8 +21,27 @@ class UserService {
    * @returns an array of User objects representing all users in the database.
    */
   async find_all() {
-    const users = await models.User.findAll();
+    const users = await models.User.findAll({
+      attributes: {
+        exclude: ["email", "password"]
+      },
+    });
     return users;
+  }
+  /**
+   * Retrieves all deleted users from the database asynchronously.
+   * @returns an array of User objects representing all deleted users in the database.
+   */
+  async find_all_deleted(){
+    const deletedUsers = await models.User.findAll({
+      where: {
+        deleted_at: {
+          [Op.ne]: null
+        }
+      },
+      paranoid: false
+    });
+    return deletedUsers;
   }
   /**
    * Find user by their id
@@ -33,6 +53,20 @@ class UserService {
     if(!user){
       throw boom.notFound("User not found")
     }
+    return user;
+  }
+  /**
+   * Restore user by their id
+   * @param {*} id identifier of the user to restore 
+   * @returns the restored user object
+   */
+  async restore_by_id(id){
+    await models.User.restore({
+      where: {
+        id: id
+      }
+    });
+    const user = await this.find_by_id(id);
     return user;
   }
   /**
@@ -54,13 +88,23 @@ class UserService {
    * @param {*} id the id of the user to delete
    * @returns the deleted user object
    */
-  async wipe_out(id) {
+  async wipe_out(id, force) {
     const user = await this.find_by_id(id);
-    await user.destroy();
-    return {
-      message: "User Deleted",
+    const response={
+      message: "",
       user
     }
+    if(force){
+      await user.destroy({
+        force: true
+      });
+      response.message="User - hard deletion"
+    }else{
+      await user.destroy();
+      response.message="User - soft deletion"
+    }
+
+    return response;
   }
 }
 

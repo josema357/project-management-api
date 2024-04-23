@@ -29,28 +29,15 @@ const UserSchema = {
   },
   createdAt: {
     type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-    get() {
-      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
-    },
     field: "created_at",
   },
   updatedAt: {
     type: DataTypes.DATE,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-    get() {
-      return moment(this.getDataValue('updateAt')).format('YYYY-MM-DD HH:mm:ss');
-    },
     field: "updated_at",
   },
-  deleteAt: {
+  deletedAt: {
     type: DataTypes.DATE,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-    get() {
-      return moment(this.getDataValue('deleteAt')).format('YYYY-MM-DD HH:mm:ss');
-    },
-    field: "delete_at",
+    field: "deleted_at",
   },
 };
 
@@ -69,6 +56,7 @@ class User extends Model {
       sequelize,
       tableName: USER_TABLE,
       modelName: "User",
+      paranoid: true,
     };
   }
 }
