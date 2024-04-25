@@ -11,7 +11,8 @@ function ormErrorHandler(err, req, res, next) {
   if (err instanceof ValidationError) {
     return res.status(409).json({
       statusCode: 409,
-      message: err.name,
+      name: err.name,
+      message: err.message,
       errors: err.errors.map((error) => ({
         message: error.message,
         field: error.path,

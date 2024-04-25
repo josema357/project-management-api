@@ -21,12 +21,16 @@ class UserService {
    * @returns an array of User objects representing all users in the database.
    */
   async find_all() {
-    const users = await models.User.findAll({
-      attributes: {
-        exclude: ["email", "password"]
-      },
-    });
-    return users;
+    try {
+      const users = await models.User.findAll({
+        attributes: {
+          exclude: ["email", "password"]
+        },
+      });
+      return users;
+    } catch (error) {
+      throw boom.badRequest(error.message);
+    }
   }
   /**
    * Retrieves all deleted users from the database asynchronously.
