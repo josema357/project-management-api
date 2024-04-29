@@ -32,3 +32,5 @@ app.use(boomErrorHandler);
 app.use(errorHanlder);
 
 app.listen(port);
+
+module.exports= app;
