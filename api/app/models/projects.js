@@ -1,4 +1,4 @@
-const { Model, DataTypes, Sequelize } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const { CUSTOMER_TABLE } = require("./customers");
 
 const PROJECT_TABLE = "projects";
@@ -35,7 +35,7 @@ const ProjectSchema = {
   },
   customerId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
     field: "customer_id",
     references: {
       model: CUSTOMER_TABLE,
@@ -46,27 +46,29 @@ const ProjectSchema = {
   },
   createdAt: {
     type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW,
     field: "created_at",
   },
   updatedAt: {
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
     field: "updated_at",
-},
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    field: "deleted_at",
+  },
 };
 
 class Project extends Model {
   static associate(models) {
     this.belongsTo(models.Customer, { as: "customer" });
-    this.hasMany(models.Task, { as: "tasks", foreignKey: "taskId" });
+    this.hasMany(models.Task, { as: "tasks", foreignKey: "projectId" });
   }
   static config(sequelize) {
     return {
       sequelize,
       tableName: PROJECT_TABLE,
       modelName: "Project",
+      paranoid: true,
     };
   }
 }

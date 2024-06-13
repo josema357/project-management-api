@@ -1,5 +1,4 @@
-const { Model, DataTypes, Sequelize } = require("sequelize");
-const moment = require("moment");
+const { Model, DataTypes } = require("sequelize");
 
 const USER_TABLE = "users";
 const UserSchema = {
