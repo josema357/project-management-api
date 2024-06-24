@@ -7,13 +7,13 @@
   - [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
   - [Happi/boom](https://hapi.dev/module/boom/)
   - [Joi](https://joi.dev/)
-  - [Jest] (https://jestjs.io/)
-  - [Supertest] (https://www.npmjs.com/package/supertest)
-  - [Fakerjs] (https://fakerjs.dev/guide/usage.html)
+  - [Jest](https://jestjs.io/)
+  - [Supertest](https://www.npmjs.com/package/supertest)
+  - [Fakerjs](https://fakerjs.dev/guide/usage.html)
 
 ### Project description
 
-This project is part of platzi course Backend con Node.js: Base de Datos con PostgreSQL. API Rest with Express.js for project management.
+This project is part of platzi course Backend con Node.js: Base de Datos con PostgreSQL. API Rest with Express.js for project management.<br/>
 Entities:
 - `Project`
 - `Users`

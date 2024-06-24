@@ -16,7 +16,7 @@ class ProjectService {
       customerId: data.customer_id
     }
     try {
-      const newProject = models.Project.create(formatData);
+      const newProject = await models.Project.create(formatData);
       return newProject;
     } catch (error) {
       throw boom.badImplementation(error.message);
@@ -28,7 +28,7 @@ class ProjectService {
    */
   async find_all(){
     try {
-      const projects = models.Project.findAll();
+      const projects = await models.Project.findAll();
       return projects;
     } catch (error) {
       throw boom.badRequest(error.message);

@@ -6,7 +6,7 @@ const name = Joi.string().trim().regex(/^[a-zA-ZÀ-ÿ\u00E0-\u00FD\s]+$/)
     "string.base": "The name must be a string.",
     "string.regex": "The name must only contain letters, spaces and accents.",
   });
-const description = Joi.string().trim().regex(/^[À-Zá-ż0-9 ]+$/)
+const description = Joi.string().trim().regex(/^[a-zA-ZÀ-ÿ\u00E0-\u00FD\s]+$/)
 .messages({
   "string.base": "The name must be a string.",
   "string.regex": "The name must only contain letters, spaces and accents.",

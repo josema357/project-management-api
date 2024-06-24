@@ -44,6 +44,10 @@ const TaskSchema = {
     defaultValue: DataTypes.NOW,
     field: "updated_at",
   },
+  deletedAt: {
+    type: DataTypes.DATE,
+    field: "deleted_at",
+  },
 };
 
 class Task extends Model {
@@ -62,6 +66,7 @@ class Task extends Model {
       sequelize,
       tableName: TASK_TABLE,
       modelName: "Task",
+      paranoid: true,
     };
   }
 }
