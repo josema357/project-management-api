@@ -21,6 +21,7 @@ Entities:
 - `Customers`
 - `Tasks`
 - `Comments`
+- `Assignments`
 
 ### BD diagram
 
