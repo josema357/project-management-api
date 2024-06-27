@@ -22,7 +22,7 @@ router.post("/", validatorHandler(createTaskDTO, "body"), async(req, res, next) 
   }
 })
 /**
- * Get all projects
+ * Get all task
  * @param router the route path
  * @param callback function to handle the route
  */
@@ -50,10 +50,10 @@ router.get("/:id", validatorHandler(getTaskDTO, "params"), async(req, res, next)
   }
 })
 /**
- * Update a project
+ * Update a task
  * @param router the route path
- * @param validatorHandler middleware function to validate project data
- * @param validatorHandler middleware function to validate project changes.
+ * @param validatorHandler middleware function to validate task data
+ * @param validatorHandler middleware function to validate task changes.
  * @param callback function to handle the route
  */
 router.patch("/:id", validatorHandler(getTaskDTO, "params"), validatorHandler(updateTaskDTO, "body"), async(req, res, next) => {

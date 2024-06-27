@@ -10,6 +10,7 @@
   - [Jest](https://jestjs.io/)
   - [Supertest](https://www.npmjs.com/package/supertest)
   - [Fakerjs](https://fakerjs.dev/guide/usage.html)
+  - [Sequelize](https://sequelize.org/docs/v6/getting-started/)
 
 ### Project description
 

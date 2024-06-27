@@ -1,6 +1,5 @@
 const boom = require("@hapi/boom");
 const { models } = require("../../libs/connection");
-const { response } = require("express");
 
 class TaskService{
   /**

@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const id = Joi.number().integer();
-const message = Joi.string().trim().regex(/^[À-Zá-ż0-9 ]+$/)
+const message = Joi.string().trim().regex(/^[a-zA-ZÀ-ÿ\u00E0-\u00FD\s]+$/)
   .messages({
     "string.base": "The name must be a string.",
     "string.regex": "The name must only contain letters, spaces and accents.",
