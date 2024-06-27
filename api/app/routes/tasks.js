@@ -1,7 +1,7 @@
 const express = require("express");
 const TaskService = require("../services/tasks");
 const { validatorHandler } = require("../../middlewares/validatorHandler");
-const { createTaskDTO, updateTaskDTO, getTaskDTO } = require("../dto/tasks");
+const { createTaskDTO, updateTaskDTO, getTaskDTO, addUserDTO } = require("../dto/tasks");
 
 const router = express.Router();
 const service = new TaskService();
@@ -78,6 +78,20 @@ router.delete("/:id", validatorHandler(getTaskDTO, "params"), async(req, res, ne
     res.status(200).json(task);
   } catch (error) {
     next(error);
+  }
+})
+/**
+ * Add a user
+ * @param router the route path
+ * @param callback function to handle the route
+ */
+router.post("/add-user", validatorHandler(addUserDTO, "body"), async(req, res, next) => {
+  try {
+    const { body } = req;
+    const user = await service.add_user(body);
+    res.status(201).json(user);
+  } catch (error) {
+    next(error)
   }
 })
 

@@ -20,6 +20,21 @@ class TaskService{
     }
   }
   /**
+   * Add user
+   * @param {*} id the id of the user to add
+   * @returns the added user object
+   */
+  async add_user(data){
+    const formatData = {
+      ...data,
+      taskId: data.task_id,
+      userId: data.user_id
+    }
+    const user = await models.Assignment.create(formatData);
+    return user;
+  }
+
+  /**
    * Retrieves all tasks
    * @returns an array of task objects
    */
@@ -37,7 +52,9 @@ class TaskService{
    * @returns the task object if found
    */
   async find_by_id(id){
-    const task = await models.Task.findByPk(id);
+    const task = await models.Task.findByPk(id, {
+      include: ["users"]
+    });
     if(!task){
       throw boom.notFound("Task not found");
     }

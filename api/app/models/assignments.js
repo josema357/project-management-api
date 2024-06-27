@@ -31,7 +31,17 @@ const AssignmentSchema = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
-    }
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        field: 'created_at',
+        defaultValue: Sequelize.NOW,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+        field: "updated_at",
+      },
 }
 
 class Assignment extends Model {
